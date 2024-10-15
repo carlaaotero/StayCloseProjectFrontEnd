@@ -1,9 +1,12 @@
 
 export interface User {
-    _id?: string;      // MongoDB genera automáticamente este campo al insertar
-    username: string;
-    name: string;
-
-  }
+    username: string,
+    name: string,
+    email: string,
+    password: string,
+    actualUbication: [],
+    inHome: boolean
+}
     
+
   

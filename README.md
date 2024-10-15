@@ -9,4 +9,12 @@ Instal·lar Angular CLI (versió 18)
 > npm install -g @angular/cli@18
 
 
-Versió 1: Inicialitzat el projecte en Angular.
+Versió 2: Rutes creades amb botons per navegar entre els Components. 
+
+	Components:
+		· Login
+		· Register
+		· Home
+		· User (perfil)
+		· Post (foro)
+
