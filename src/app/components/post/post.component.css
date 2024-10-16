@@ -1,0 +1,179 @@
+/* PostComponent CSS */
+
+/* Estructura general para centrar el contenido */
+.foro-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    height: 100vh;
+}
+
+/* Contenedor principal que agrupa el formulario y la lista */
+.form-list-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Estilos para el formulario */
+.form-container {
+    flex: 1;
+    max-width: 45%;
+}
+
+.form-container input,
+.form-container textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #bee3db;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #555a6f;
+}
+
+.form-container textarea {
+    height: 150px;
+    resize: none;
+}
+
+/* Botones dentro del formulario */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.foro-button {
+    background-color: #89afaf;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.foro-button:hover {
+    background-color: #bee3db;
+}
+
+/* Botón de cancelar */
+.cancel-button {
+    background-color: #ff6b6b;
+}
+
+.cancel-button:hover {
+    background-color: #ff4c4c;
+}
+
+/* Barra separadora */
+.divider {
+    width: 4px;
+    background-color: #bee3db;
+    margin: 0 1rem;
+    height: auto;
+    min-height: 300px;
+    align-self: center;
+}
+
+/* Lista de posts */
+.list-container {
+    flex: 1;
+    max-width: 45%;
+}
+
+.post-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.post-item {
+    background-color: #ffd8bb;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    color: #555a6f;
+    position: relative;
+}
+
+.post-item h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.post-item p {
+    margin: 0.5rem 0;
+}
+
+.post-item img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* Botones en la lista */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-button {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #ff4c4c;
+}
+
+.update-button {
+    width: 100%;
+    max-width: 200px;
+    margin-top: 1.5rem;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .form-list-wrapper {
+        flex-direction: column;
+    }
+
+    .divider {
+        width: 100%;
+        height: 4px;
+        margin: 1.5rem 0;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .form-container input,
+    .form-container textarea {
+        font-size: 1rem;
+    }
+
+    .foro-button {
+        padding: 0.6rem 1rem;
+        font-size: 1rem;
+    }
+
+    .post-item h3 {
+        font-size: 1.3rem;
+    }
+
+    .post-item p {
+        font-size: 1rem;
+    }
+}

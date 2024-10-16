@@ -1,0 +1,51 @@
+/* Estilos para centrar el contenido y aplicar los colores de la aplicación */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura completa de la pantalla */
+    background-color: #f9f9f9; /* Color de fondo */
+}
+
+/* Estilo para el título de la página */
+.title {
+    font-size: 3rem;
+    color: #555a6f; /* Color del texto */
+    margin-bottom: 2rem;
+}
+
+/* Estilos para el contenedor de botones */
+.button-container {
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* Estilos para los botones */
+.home-button {
+    background-color: #89afaf; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para el hover en los botones */
+.home-button:hover {
+    background-color: #bee3db; /* Color al hacer hover */
+}
+
+/* Estilos para dispositivos más pequeños */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .home-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
