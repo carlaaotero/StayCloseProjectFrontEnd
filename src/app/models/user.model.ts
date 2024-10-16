@@ -1,5 +1,6 @@
 
 export interface User {
+    _id?: string; // MongoDb genera automàticament aquest camp
     username: string,
     name: string,
     email: string,
