@@ -42,4 +42,9 @@ export class UserService {
     return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
 
+  // Obtener un usuario por su nombre de usuario
+  getUserByUsername(username: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}?username=${username}`);
+  }
+
 }

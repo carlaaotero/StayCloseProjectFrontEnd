@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
-import { PostComponent } from './components/post/post.component';
+import { PostComponent } from './components/post/post.component'; // Cambia PostsComponent a PostComponent
 
 
 export const routes: Routes = [
