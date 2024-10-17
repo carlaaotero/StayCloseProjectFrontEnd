@@ -1,7 +1,7 @@
 <div class="login-container">
   <!-- Título de la página -->
   <h1 class="title">LOGIN</h1>
-  <img class="logo" src="../../../images/logo.png">
+  <!-- <img class="logo" src="../../../images/logo.png"> -->
   <!-- Formulario de inicio de sesión -->
   <form (ngSubmit)="logUser(userForm)" #userForm="ngForm">
       <div class="form-group">
@@ -33,10 +33,10 @@
               La contraseña es obligatoria.
           </div>
       </div>
-
+      <br>
       <div class="button-container">
           <button type="submit" class="login-button" [disabled]="!userForm.valid">Iniciar Sesión</button>
-          <button class="login-button" routerLink="/home">Anar a Home</button>
+          <!-- <button class="login-button" routerLink="/home">Anar a Home</button> -->
       </div>
   </form>
 </div>

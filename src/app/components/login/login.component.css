@@ -12,6 +12,7 @@ html, body {
 
 body {
     display: flex;
+    font-family: 'Helvetica', sans-serif;
     justify-content: center;  /* Centra el contenido horizontalmente */
     align-items: center;      /* Centra el contenido verticalmente */
     background-color: #f4f4f4;

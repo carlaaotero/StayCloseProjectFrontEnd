@@ -10,6 +10,7 @@ html, body {
 
 body {
     display: flex;
+    font-family: 'Helvetica', sans-serif;
     justify-content: center; /* Centra horizontalmente */
     align-items: center;     /* Centra verticalmente */
     height: 100vh;           /* Altura completa del viewport */
