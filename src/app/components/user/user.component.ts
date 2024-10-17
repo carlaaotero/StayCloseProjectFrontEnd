@@ -23,7 +23,8 @@ export class UserComponent implements OnInit{
     email: '',
     password: '',
     actualUbication: [],
-    inHome: false
+    inHome: false,
+    admin: true
   };
 
   confirmarPassword: string = ''; // Campo para confirmar la contraseña
@@ -55,10 +56,10 @@ export class UserComponent implements OnInit{
       // Estamos en modo edición, modificar el usuario existente
       this.usuarios[this.indiceEdicion] = { ...this.nuevoUsuario, _id: this.usuarios[this.indiceEdicion]._id };
   
-      // // Actualizar el usuario en la API
-      // this.userService.updateUser(this.usuarios[this.indiceEdicion]).subscribe(response => {
-      //   console.log('Usuario actualizado:', response);
-      // });
+    // Actualizar el usuario en la API
+      this.userService.updateUser( this.usuarios[this.indiceEdicion]).subscribe(response => {
+        console.log('Usuario actualizado:', response);
+      });
   
       // Limpiar el estado de edición
       this.indiceEdicion = null;
@@ -70,7 +71,8 @@ export class UserComponent implements OnInit{
         email: this.nuevoUsuario.email,
         password: this.nuevoUsuario.password,
         actualUbication: this.nuevoUsuario.actualUbication,
-        inHome: this.nuevoUsuario.inHome
+        inHome: this.nuevoUsuario.inHome,
+        admin: this.nuevoUsuario.admin
       };
   
       // Enviar el usuario a la API a través del UserService
@@ -96,7 +98,8 @@ export class UserComponent implements OnInit{
       email: '',
       password: '',
       actualUbication: [],
-      inHome: true
+      inHome: true,
+      admin: true
     };
     this.confirmarPassword = ''; // Reiniciar el campo de confirmar contraseña
     this.formSubmitted = false; // Restablecer el estado del formulario para no mostrar errores
@@ -114,7 +117,7 @@ export class UserComponent implements OnInit{
   // Función para eliminar un usuario usando el _id
   eliminarElemento(index: number): void {
     const usuarioAEliminar = this.usuarios[index];
-  
+    console.log(usuarioAEliminar);
     if (!usuarioAEliminar._id) {
       console.error('El usuario no tiene un _id válido. No se puede eliminar.');
       alert('El usuario no se puede eliminar porque no está registrado en la base de datos.');
@@ -147,7 +150,5 @@ export class UserComponent implements OnInit{
   togglePassword(index: number): void {
     this.mostrarPassword[index] = !this.mostrarPassword[index]; // Cambiamos entre true y false
   }
-
-
 
 }

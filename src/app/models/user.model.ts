@@ -6,7 +6,8 @@ export interface User {
     email: string,
     password: string,
     actualUbication: [],
-    inHome: boolean
+    inHome: boolean,
+    admin: boolean
 }
     
 

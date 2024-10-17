@@ -1,1 +1,100 @@
-<p>user works!</p>
+<div class="container">
+    <!-- Formulario a la izquierda -->
+    <div class="form-container">
+        <h1>{{ indiceEdicion !== null ? 'Editar usuario' : 'Agregar un nuevo usuario' }}</h1>
+        <form (ngSubmit)="agregarElemento(userForm)" #userForm="ngForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input id="username" [(ngModel)]="nuevoUsuario.username" name="username"
+                    placeholder="Username del usuario" required />
+                <div *ngIf="userForm.controls['username']?.invalid && (userForm.controls['username']?.touched || formSubmitted)"
+                    class="error-message">
+                    El username es obligatorio.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input id="name" [(ngModel)]="nuevoUsuario.name" name="name" placeholder="Nombre del usuario"
+                    required />
+                <div *ngIf="userForm.controls['name']?.invalid && (userForm.controls['name']?.touched || formSubmitted)"
+                    class="error-message">
+                    El nombre es obligatorio.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input id="email" [(ngModel)]="nuevoUsuario.email" name="email" placeholder="Email" required email />
+                <div *ngIf="userForm.controls['email']?.invalid && (userForm.controls['email']?.touched || formSubmitted)"
+                    class="error-message">
+                    {{ userForm.controls['email'].errors?.['required'] ? 'El email es obligatorio.' : 'Formato de email
+                    no válido.' }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input id="password" [(ngModel)]="nuevoUsuario.password" name="password" type="password"
+                    placeholder="Password" required minlength="7" />
+                <div *ngIf="userForm.controls['password']?.invalid && (userForm.controls['password']?.touched || formSubmitted)"
+                    class="error-message">
+                    {{ userForm.controls['password'].errors?.['required'] ? 'La contraseña es obligatoria.' : 'La
+                    contraseña debe tener al menos 7 caracteres.' }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmarPassword">Confirmar Contraseña:</label>
+                <input id="confirmarPassword" [(ngModel)]="confirmarPassword" name="confirmarPassword" type="password"
+                    placeholder="Confirmar Password" required minlength="7" />
+                <div *ngIf="confirmarPassword !== nuevoUsuario.password && confirmarPassword.length > 0 && formSubmitted"
+                    class="error-message">
+                    Las contraseñas no coinciden.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="actualUbication">Ubicación Actual:</label>
+                <input id="actualUbication" [(ngModel)]="nuevoUsuario.actualUbication" name="actualUbication"
+                    placeholder="Ubicación Actual" />
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" [(ngModel)]="nuevoUsuario.inHome" name="inHome" /> En casa
+                </label>
+            </div>
+
+            <button type="submit" class="submit-button" [disabled]="!userForm.valid">
+                {{ indiceEdicion !== null ? 'Actualizar' : 'Agregar' }}
+            </button>
+        </form>
+    </div>
+
+    <!-- Lista de usuarios a la derecha -->
+    <div class="lista-usuarios">
+        <h2>Lista de Usuarios</h2>
+        <ul>
+            <li *ngFor="let usuario of usuarios; let i = index">
+                <div class="user-info">
+                    <strong>{{ usuario.name }}</strong>
+                    <div class="button-container">
+                        <button (click)="toggleDesplegable(i)" class="detalles mostrar-detalles">
+                            {{ desplegado[i] ? 'Ocultar detalles' : 'Mostrar detalles' }}
+                        </button>
+                        <button (click)="eliminarElemento(i)" class="eliminar">Eliminar</button>
+                    </div>
+                </div>
+
+                <!-- Detalles del usuario -->
+                <div *ngIf="desplegado[i]" class="user-details">
+                    <p><strong>Username:</strong> {{ usuario.username }}</p>
+                    <p><strong>Email:</strong> {{ usuario.email }}</p>
+                </div>
+
+                <button (click)="prepararEdicion(usuario, i)" class="modificar">Modificar</button>
+            </li>
+        </ul>
+    </div>
+</div>

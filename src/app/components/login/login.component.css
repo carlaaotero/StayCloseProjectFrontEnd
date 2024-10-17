@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif; /* Fuente simple y limpia */
+}
+
+body {
+    display: flex;
+    justify-content: center;  /* Centra el contenido horizontalmente */
+    align-items: center;      /* Centra el contenido verticalmente */
+    background-color: #f4f4f4;
+    height: 100vh;            /* Altura completa de la ventana */
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;   /* Contenido en columna */
+    align-items: center;      /* Centra el contenido dentro del contenedor */
+    gap: 20px;                /* Espacio entre los elementos */
+    padding: 30px;            /* Relleno interno */
+    border: 3px solid #89afaf; /* Borde de color */
+    border-radius: 10px;      /* Bordes redondeados */
+    background-color: white;  /* Fondo blanco para destacar el contenedor */
+    width: 80%;               /* Ancho del 80% de la pantalla */
+    max-width: 400px;         /* Limitar el ancho a 400px */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añadir una sombra sutil para efecto */
+    text-align: center;       /* Centrar el texto */
+}
+
+.title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;      /* Separación del título y los botones */
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;   /* Botones en columna */
+    gap: 15px;                /* Espacio entre botones */
+    width: 100%;              /* Botones ocupan todo el ancho */
+}
+
+.login-button {
+    padding: 10px 20px;
+    background-color: #89afaf;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;              /* Botón ocupa todo el ancho */
+}
+
+.login-button:hover {
+    background-color: #77a2a2; /* Cambia de color al pasar el ratón */
+}

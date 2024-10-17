@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = `${environment.apiUrl}/users`;
+  private apiUrl = `${environment.apiUrl}/user`;
   constructor(private http: HttpClient) { }
 
 
@@ -23,16 +23,17 @@ export class UserService {
   }
 
   // Actualitzar un usuari pel ID
-  updateUser(id: string, user: User): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}/${id}`, user);
+  updateUser(usuario: User): Observable<User> {
+    return this.http.put<User>(`${this.apiUrl}/update/${usuario._id}`, usuario);
   }
-
   // Eliminar un usuari pel ID
   deleteUser(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 
-  // Buscar un usuari pel nom d'usuari
+  
+  //RUTES NO CREADES ENCARA
+  /*// Buscar un usuari pel nom d'usuari
   findUserByUsername(username: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/username/${username}`); // Si tens aquesta ruta implementada
   }
@@ -40,6 +41,6 @@ export class UserService {
   // Obtenir un usuari per ID
   getUserById(id: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/${id}`);
-  }
+  }*/
 
 }
