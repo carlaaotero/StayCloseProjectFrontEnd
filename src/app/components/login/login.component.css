@@ -18,6 +18,13 @@ body {
     height: 100vh;            /* Altura completa de la ventana */
 }
 
+.logo {
+    width: 150px; /* Ajusta este tamaño según lo que necesites */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
 .login-container {
     display: flex;
     flex-direction: column;   /* Contenido en columna */

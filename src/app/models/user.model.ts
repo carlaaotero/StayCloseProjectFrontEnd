@@ -9,6 +9,8 @@ export interface User {
     inHome: boolean,
     admin: boolean
 }
+
+export type login = Pick<User, 'username' | 'password' >
     
 
   

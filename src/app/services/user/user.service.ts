@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../../models/user.model';
+import { login, User } from '../../models/user.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
@@ -13,7 +13,7 @@ export class UserService {
 
 
   // Obtenir tots els usuaris
-  getUsers(page: number = 1, limit: number = 10): Observable<User[]> {
+  getUsers(page: number = 1, limit: number = 20): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}?page=${page}&limit=${limit}`);
   }
 
@@ -29,6 +29,9 @@ export class UserService {
   // Eliminar un usuari pel ID
   deleteUser(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+  login(user: login): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/login`, user);
   }
 
   

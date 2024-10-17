@@ -78,9 +78,10 @@ export class UserComponent implements OnInit{
       // Enviar el usuario a la API a través del UserService
       this.userService.createUser(usuarioJSON).subscribe(response => {
         console.log('Usuario agregado:', response);
-        
+
+        usuarioJSON._id=response._id;
         // Agregar el usuario con el _id generado por la API al array de usuarios en el frontend
-        this.usuarios.push({ ...usuarioJSON, _id: response._id });
+        this.usuarios.push({ ...usuarioJSON});
         this.desplegado.push(false); // Añadir un nuevo estado de desplegado
       });
     }
