@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';  
 import { User } from '../../models/user.model'; 
 import { UserService } from '../../services/user/user.service';
+import { Paginator } from '../../models/paginator.model';
 
 
 @Component({
@@ -16,6 +17,11 @@ export class UserComponent implements OnInit{
   usuarios: User[] = []; // Lista de usuarios con tipado User
   desplegado: boolean[] = []; // Controla si el desplegable de cada usuario está abierto o cerrado
   mostrarPassword: boolean[] = []; // Array para controlar la visibilidad de la contraseña
+  paginator: Paginator = {
+    page: 1,  // Asigna el número de pàgina 
+    limit: 4 // Asigna el limit d'elements per pàgina
+  }
+  
 
   nuevoUsuario: User = {
     username: '', 
@@ -35,7 +41,8 @@ export class UserComponent implements OnInit{
   constructor(private userService: UserService) {}
   ngOnInit(): void {
     // Cargar usuarios desde el UserService
-    this.userService.getUsers()
+    console.log(this.paginator)
+    this.userService.getUsers(this.paginator)
       .subscribe(data => {
         this.usuarios = data;
         this.desplegado = new Array(data.length).fill(false);

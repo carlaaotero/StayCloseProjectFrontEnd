@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
 import { PostComponent } from './components/post/post.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 export const routes: Routes = [
@@ -12,6 +13,7 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'user', component: UserComponent},
     { path: 'foro', component: PostComponent},
+    { path: 'navbar', component: NavbarComponent},
     { path: '**', redirectTo: 'login' } 
 ];
 
