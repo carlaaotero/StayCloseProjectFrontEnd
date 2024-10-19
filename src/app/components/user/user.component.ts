@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { User } from '../../models/user.model'; 
 import { UserService } from '../../services/user/user.service';
 import { Paginator } from '../../models/paginator.model';
+import { Data } from '../../models/data.model';
 
 
 @Component({
@@ -15,12 +16,18 @@ import { Paginator } from '../../models/paginator.model';
 })
 export class UserComponent implements OnInit{
   usuarios: User[] = []; // Lista de usuarios con tipado User
+  totalUsuarios: number = 0;
   desplegado: boolean[] = []; // Controla si el desplegable de cada usuario está abierto o cerrado
   mostrarPassword: boolean[] = []; // Array para controlar la visibilidad de la contraseña
   paginator: Paginator = {
     page: 1,  // Asigna el número de pàgina 
-    limit: 4 // Asigna el limit d'elements per pàgina
+    limit: 5 // Asigna el limit d'elements per pàgina
   }
+  data: Data []= []; 
+
+
+  // Lista de opciones para elementos por página
+  availableLimits: number[] = [5, 10, 25, 50]; // Opciones para el límite de elementos
   
 
   nuevoUsuario: User = {
@@ -40,14 +47,33 @@ export class UserComponent implements OnInit{
 
   constructor(private userService: UserService) {}
   ngOnInit(): void {
-    // Cargar usuarios desde el UserService
-    console.log(this.paginator)
-    this.userService.getUsers(this.paginator)
-      .subscribe(data => {
-        this.usuarios = data;
-        this.desplegado = new Array(data.length).fill(false);
-      });
+   this.loadUsers();
   }
+
+  loadUsers(page: number = this.paginator.page, limit: number = this.paginator.limit): void {
+    // Actualizar los valores de la paginación
+    this.paginator.page = page;
+    this.paginator.limit = limit;
+
+    // Llamar al servicio para obtener los usuarios
+    this.userService.getUsers(this.paginator)
+        .subscribe(data => {
+            this.usuarios = data.users; // Suponiendo que el servicio retorna un objeto con 'users'
+            this.totalUsuarios = data.total; // Suponiendo que el servicio retorna el total de usuarios
+            this.desplegado = new Array(this.usuarios.length).fill(false);
+        });
+}
+
+   // Cambiar el número de elementos por página
+   onItemsPerPageChange(event: Event): void {
+    const limit = (event.target as HTMLSelectElement).value;
+    this.paginator.limit = +limit; // Actualizar el límite
+    this.paginator.page = 1; // Reiniciar a la primera página
+    this.loadUsers(); // Cargar usuarios con el nuevo límite
+  }
+
+ 
+
 
   // Función para agregar o modificar un usuario
   agregarElemento(userForm: NgForm): void {
@@ -158,5 +184,16 @@ export class UserComponent implements OnInit{
   togglePassword(index: number): void {
     this.mostrarPassword[index] = !this.mostrarPassword[index]; // Cambiamos entre true y false
   }
+  // Calcular el número total de páginas
+  get totalPages(): number {
+    return Math.ceil(this.totalUsuarios / this.paginator.limit);
+  }
+
+  // Generar un array para iterar en el template de la paginación
+  getPages(): number[] {
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+
+  
 
 }

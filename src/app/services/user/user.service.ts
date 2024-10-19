@@ -17,15 +17,12 @@ export class UserService {
   
 
   // Obtenir tots els usuaris
-  getUsers(paginator: Paginator ): Observable<User[]> {
+  getUsers(paginator: Paginator ): Observable<{ users: User[]; total: number }> {
     console.log(paginator);
-    // Convertimos el objeto paginator a HttpParams
-    // const params = new HttpParams()
-    //     .set('page', paginator.page.toString())
-    //     .set('limit', paginator.limit.toString());
-    // console.log(params);
-    return this.http.get<User[]>(`${this.apiUrl}/getUsers/${paginator.page}/${paginator.limit}`);
+    
+    return this.http.get<{ users: User[]; total: number }>(`${this.apiUrl}/getUsers/${paginator.page}/${paginator.limit}`);
   }
+
 
   // Crear un usuari nou
   createUser(user: User): Observable<User> {

@@ -1,5 +1,11 @@
 # StayCloseFrontEnd
 
+Paginació funciona, pero no se'm mostren els butons de les pagines
+
+
+----------------------------------------------------------
+# Comandes Angular
+
 Instal·lar Angular CLI (versió 18)
 
 > npm install -g @angular/cli

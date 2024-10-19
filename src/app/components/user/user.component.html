@@ -103,24 +103,29 @@
                 <button (click)="prepararEdicion(usuario, i)" class="modificar">Modificar</button>
             </li>
 
-            <!-- Paginador de usuarios -->
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-            </nav>
+                <!-- Paginación -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <!-- Botón de página anterior -->
+                        <li class="page-item" [class.disabled]="paginator.page === 1">
+                            <a class="page-link" (click)="loadUsers(paginator.page - 1, paginator.limit)" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                
+                        <!-- Generar botones para cada página -->
+                        <li *ngFor="let page of getPages()" class="page-item" [class.active]="page === paginator.page">
+                            <a class="page-link" (click)="loadUsers(page, paginator.limit)">{{ page }}</a>
+                        </li>
+                
+                        <!-- Botón de página siguiente -->
+                        <li class="page-item" [class.disabled]="paginator.page === totalPages">
+                            <a class="page-link" (click)="loadUsers(paginator.page + 1, paginator.limit)" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
         </ul>
     </div>
 </div>
