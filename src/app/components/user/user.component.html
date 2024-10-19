@@ -126,6 +126,15 @@
                         </li>
                     </ul>
                 </nav>
+                <!-- Selector para el número de elementos por página -->
+                <div class="form-group mt-3">
+                    <label for="itemsPerPage">Elementos por página:</label>
+                    <select id="itemsPerPage" class="form-control" (change)="onItemsPerPageChange($event)">
+                        <option *ngFor="let limit of availableLimits" [value]="limit" [selected]="limit === paginator.limit">
+                            {{ limit }}
+                        </option>
+                    </select>
+                </div>
         </ul>
     </div>
 </div>

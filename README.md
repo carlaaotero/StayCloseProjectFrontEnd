@@ -1,6 +1,8 @@
 # StayCloseFrontEnd
 
-Paginació funciona, pero no se'm mostren els butons de les pagines
+> Paginació funciona, pero no se'm mostren els butons de les pagines.
+
+> Afegit un selector de elements per pagina.
 
 
 ----------------------------------------------------------

@@ -28,6 +28,7 @@ export class UserComponent implements OnInit{
 
   // Lista de opciones para elementos por página
   availableLimits: number[] = [5, 10, 25, 50]; // Opciones para el límite de elementos
+  totalPages: number = 0;
   
 
   nuevoUsuario: User = {
@@ -48,6 +49,7 @@ export class UserComponent implements OnInit{
   constructor(private userService: UserService) {}
   ngOnInit(): void {
    this.loadUsers();
+
   }
 
   loadUsers(page: number = this.paginator.page, limit: number = this.paginator.limit): void {
@@ -65,7 +67,7 @@ export class UserComponent implements OnInit{
 }
 
    // Cambiar el número de elementos por página
-   onItemsPerPageChange(event: Event): void {
+  onItemsPerPageChange(event: Event): void {
     const limit = (event.target as HTMLSelectElement).value;
     this.paginator.limit = +limit; // Actualizar el límite
     this.paginator.page = 1; // Reiniciar a la primera página
@@ -184,16 +186,22 @@ export class UserComponent implements OnInit{
   togglePassword(index: number): void {
     this.mostrarPassword[index] = !this.mostrarPassword[index]; // Cambiamos entre true y false
   }
-  // Calcular el número total de páginas
-  get totalPages(): number {
-    return Math.ceil(this.totalUsuarios / this.paginator.limit);
+
+   // Calcular el número total de páginas
+   getTotalPages(): number {
+    this.totalPages = Math.ceil(this.totalUsuarios / this.paginator.limit);
+    console.log(this.totalUsuarios, this.paginator.limit);
+    return this.totalPages;
   }
 
   // Generar un array para iterar en el template de la paginación
   getPages(): number[] {
-    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    const totalPages = Math.ceil(this.totalUsuarios / this.paginator.limit);
+
+    // Si no hay usuarios, no generar páginas
+    if (totalPages <= 1) {
+      return [];
+    }
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
-
-  
-
 }
