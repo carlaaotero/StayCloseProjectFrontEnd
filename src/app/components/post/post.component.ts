@@ -4,7 +4,6 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { PostService } from '../../services/post/post.service';
 import { Post } from '../../models/post.model';
 import { UserService } from '../../services/user/user.service';
-import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-post',
@@ -13,100 +12,103 @@ import { User } from '../../models/user.model';
   templateUrl: './post.component.html',
   styleUrl: './post.component.css'
 })
-export class PostComponent implements OnInit{
+export class PostComponent implements OnInit {
 
-  posts: Post[] = []; //Llista dels posts
-  errorMessage: string = ''; //Varibale per mostrar missatges d'error
+  posts: Post[] = []; // Lista de posts
+  errorMessage: string = ''; // Variable para mostrar mensajes de error
 
+  // Inicializamos un nuevo post con campos vacíos
   nuevoPost: Post = { 
-    author: { username: '', name: '', email: '', password: '', actualUbication: [], inHome: false, admin: true },
+    author: '', // El campo author será el nombre de usuario ingresado
     postType: '',
     content: '',
     image: '',
-    postDate: new Date() 
+    postDate: new Date()
   };
   
   isEditing: boolean = false;
   editIndex: number = -1;
-  
-  constructor(private postService: PostService, private userService: UserService) {}
+
+  constructor(private postService: PostService) {}
 
   ngOnInit() {
-    this.getPosts(); // Llama a cargarPosts al inicializar el componente
+    this.getPosts(); // Carga los posts al inicializar el componente
   }
 
+  // Obtener los posts existentes
   getPosts() {
     this.postService.getPosts().subscribe(
       (data: Post[]) => {
-        //this.posts = posts; // Asigna los posts recibidos
-        this.posts = data.filter(exp => exp._id !== undefined)
-        console.log('Posts rebuts:', data);
+        this.posts = data.filter(exp => exp._id !== undefined);
+        console.log('Posts recibidos:', data);
       },
       (error) => {
-        console.error("Error al cargar els posts:", error);
+        console.error("Error al cargar los posts:", error);
       }
     );
   }
 
+  // Método para agregar o editar un post
   addPost(postForm: any) {
-    //this.userService.findUserByUsername(this.nuevoPost.author.username).subscribe((user: User) => {
-        //this.nuevoPost.author = user;
-        if (this.isEditing) {
-            const postId = this.posts[this.editIndex]._id;
-            if (postId) {
-                this.postService.updatePost(postId, { ...this.nuevoPost }).subscribe((updatedPost: Post) => {
-                    this.posts[this.editIndex] = updatedPost;
-                    this.resetFormulario(postForm);
-                }, (error: any) => {
-                    console.error("Error a l'actualitzar el post:", error);
-                });
-            } else {
-                console.error("El ID del post es undefined.");
-            }
-        } else {
-            this.postService.createPost(this.nuevoPost).subscribe((newPost: Post) => {
-                this.posts.push(newPost);
-                this.resetFormulario(postForm);
-            }, (error: any) => {
-                console.error("Error al crear el post:", error);
-            });
-        }
-    //}, (error: any) => {
-        //console.error("Usuario no encontrado:", error);
-    //});
+    if (this.isEditing) {
+      // Actualizamos el post si estamos en modo edición
+      const postId = this.posts[this.editIndex]._id;
+      if (postId) {
+        this.postService.updatePost(postId, { ...this.nuevoPost }).subscribe((updatedPost: Post) => {
+          this.posts[this.editIndex] = updatedPost;
+          this.resetFormulario(postForm);
+        }, (error: any) => {
+          console.error("Error al actualizar el post:", error);
+        });
+      } else {
+        console.error("El ID del post es undefined.");
+      }
+    } else {
+      // Creamos un nuevo post
+      this.postService.createPost(this.nuevoPost).subscribe((newPost: Post) => {
+        this.posts.push(newPost);
+        this.resetFormulario(postForm);
+      }, (error: any) => {
+        console.error("Error al crear el post:", error);
+      });
+    }
   }
 
+  // Preparar la edición de un post
   prepararEdicion(post: Post, index: number) {
     this.nuevoPost = { ...post };
     this.isEditing = true;
     this.editIndex = index;
   }
 
+  // Eliminar un post
   eliminarElemento(index: number) {
     const postId = this.posts[index]._id;
     if (postId) {
-        this.postService.deletePost(postId).subscribe(() => {
-            this.posts.splice(index, 1);
-        }, (error: any) => {
-            console.error("Error al eliminar el post:", error);
-        });
+      this.postService.deletePost(postId).subscribe(() => {
+        this.posts.splice(index, 1);
+      }, (error: any) => {
+        console.error("Error al eliminar el post:", error);
+      });
     } else {
-        console.error("El ID del post a eliminar es undefined.");
+      console.error("El ID del post a eliminar es undefined.");
     }
   }
 
+  // Reiniciar la edición
   resetEdicion() {
     this.isEditing = false;
     this.resetFormulario();
   }
 
+  // Reiniciar el formulario de post
   resetFormulario(postForm?: any) {
     this.nuevoPost = { 
-      author: { username: '', name: '', email: '', password: '', actualUbication: [], inHome: false,  admin: true },
+      author: '', // El campo author sigue siendo un string vacío
       postType: '',
       content: '',
       image: '',
-      postDate: new Date() 
+      postDate: new Date()
     }; 
     if (postForm) {
       postForm.resetForm();
@@ -115,6 +117,7 @@ export class PostComponent implements OnInit{
     this.editIndex = -1;
   }
 
+  // Método auxiliar para actualizar la lista de posts (opcional)
   actualizarLista() {
     console.log('Lista actualizada:', this.posts);
   }

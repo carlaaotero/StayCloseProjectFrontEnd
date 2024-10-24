@@ -1,13 +1,29 @@
 <div class="foro-container">
     <!-- Formulario para crear o modificar posts -->
     <div class="form-list-wrapper">
+        <!-- Formulario de creación o modificación -->
         <div class="form-container">
             <h2 class="title">Crear o Modificar Post</h2>
-            <form #postForm="ngForm" (ngSubmit)="addPost(postForm)">
-                <input type="text" name="author" [(ngModel)]="nuevoPost.author" placeholder="Autor" required />
-                <input type="text" name="postType" [(ngModel)]="nuevoPost.postType" placeholder="Tipo de Post" required />
-                <textarea name="content" [(ngModel)]="nuevoPost.content" placeholder="Contenido" required></textarea>
-                <input type="text" name="image" [(ngModel)]="nuevoPost.image" placeholder="URL de la Imagen" />
+            <form #postForm="ngForm" (ngSubmit)="addPost(postForm)" class="post-form">
+                <div class="input-group">
+                    <label for="author">Autor:</label>
+                    <input type="text" id="author" name="author" [(ngModel)]="nuevoPost.author" placeholder="Escribe el autor" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="postType">Tipo de Post:</label>
+                    <input type="text" id="postType" name="postType" [(ngModel)]="nuevoPost.postType" placeholder="Tipo de Post" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="content">Contenido:</label>
+                    <textarea id="content" name="content" [(ngModel)]="nuevoPost.content" placeholder="Escribe el contenido" required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="image">URL de la Imagen:</label>
+                    <input type="text" id="image" name="image" [(ngModel)]="nuevoPost.image" placeholder="URL de la Imagen (opcional)" />
+                </div>
 
                 <div class="button-container">
                     <button type="submit" class="foro-button">{{ isEditing ? 'Modificar' : 'Agregar' }} Post</button>
@@ -17,16 +33,20 @@
         </div>
 
         <!-- Barra separadora -->
-        <div class="divider"></div>
+        <hr class="divider" />
 
         <!-- Lista de Posts -->
         <div class="list-container">
             <h2 class="title">Lista de Posts</h2>
             <ul class="post-list">
                 <li *ngFor="let post of posts; let i = index" class="post-item">
-                    <h3>{{ post.author.username }} ({{ post.postType }})</h3>
-                    <p>{{ post.content }}</p>
-                    <img *ngIf="post.image" [src]="post.image" alt="Post Image" />
+                    <div class="post-header">
+                        <h3 class="post-author">{{ post.author }} - <span class="post-type">{{ post.postType }}</span></h3>
+                    </div>
+                    <div class="post-body">
+                        <p class="post-content">{{ post.content }}</p>
+                        <img *ngIf="post.image" [src]="post.image" alt="Imagen del post" class="post-image" />
+                    </div>
 
                     <div class="button-container">
                         <button class="foro-button" (click)="prepararEdicion(post, i)">Editar</button>
@@ -38,4 +58,3 @@
         </div>
     </div>
 </div>
-
