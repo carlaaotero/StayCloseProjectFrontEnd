@@ -36,12 +36,12 @@ export class UserService {
 
   
   //RUTES NO CREADES ENCARA
-  /*// Buscar un usuari pel nom d'usuari
+  //Buscar un usuari pel nom d'usuari
   findUserByUsername(username: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/username/${username}`); // Si tens aquesta ruta implementada
   }
 
-  // Obtenir un usuari per ID
+  /* Obtenir un usuari per ID
   getUserById(id: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/${id}`);
   }*/

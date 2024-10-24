@@ -1,1 +1,41 @@
-<p>post works!</p>
+<div class="foro-container">
+    <!-- Formulario para crear o modificar posts -->
+    <div class="form-list-wrapper">
+        <div class="form-container">
+            <h2 class="title">Crear o Modificar Post</h2>
+            <form #postForm="ngForm" (ngSubmit)="addPost(postForm)">
+                <input type="text" name="author" [(ngModel)]="nuevoPost.author" placeholder="Autor" required />
+                <input type="text" name="postType" [(ngModel)]="nuevoPost.postType" placeholder="Tipo de Post" required />
+                <textarea name="content" [(ngModel)]="nuevoPost.content" placeholder="Contenido" required></textarea>
+                <input type="text" name="image" [(ngModel)]="nuevoPost.image" placeholder="URL de la Imagen" />
+
+                <div class="button-container">
+                    <button type="submit" class="foro-button">{{ isEditing ? 'Modificar' : 'Agregar' }} Post</button>
+                    <button type="button" class="foro-button cancel-button" (click)="resetEdicion()" *ngIf="isEditing">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Barra separadora -->
+        <div class="divider"></div>
+
+        <!-- Lista de Posts -->
+        <div class="list-container">
+            <h2 class="title">Lista de Posts</h2>
+            <ul class="post-list">
+                <li *ngFor="let post of posts; let i = index" class="post-item">
+                    <h3>{{ post.author.username }} ({{ post.postType }})</h3>
+                    <p>{{ post.content }}</p>
+                    <img *ngIf="post.image" [src]="post.image" alt="Post Image" />
+
+                    <div class="button-container">
+                        <button class="foro-button" (click)="prepararEdicion(post, i)">Editar</button>
+                        <button class="delete-button" (click)="eliminarElemento(i)">Eliminar</button>
+                    </div>
+                </li>
+            </ul>
+            <button class="foro-button update-button" (click)="actualizarLista()">Actualizar Lista</button>
+        </div>
+    </div>
+</div>
+
