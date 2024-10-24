@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { PostService } from '../../services/post/post.service';
 import { Post } from '../../models/post.model';
-import { UserService } from '../../services/user/user.service';
+//import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-post',
@@ -68,6 +68,7 @@ export class PostComponent implements OnInit {
       this.postService.createPost(this.nuevoPost).subscribe((newPost: Post) => {
         this.posts.push(newPost);
         this.resetFormulario(postForm);
+        this.getPosts(); // Actualiza la lista de posts después de crear uno nuevo
       }, (error: any) => {
         console.error("Error al crear el post:", error);
       });
@@ -119,6 +120,7 @@ export class PostComponent implements OnInit {
 
   // Método auxiliar para actualizar la lista de posts (opcional)
   actualizarLista() {
+    this.getPosts(); // Re-fetch the posts from the server
     console.log('Lista actualizada:', this.posts);
   }
 }

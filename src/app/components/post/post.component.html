@@ -12,7 +12,14 @@
 
                 <div class="input-group">
                     <label for="postType">Tipo de Post:</label>
-                    <input type="text" id="postType" name="postType" [(ngModel)]="nuevoPost.postType" placeholder="Tipo de Post" required />
+                    <select id="postType" name="postType" [(ngModel)]="nuevoPost.postType" required>
+                        <option value="" disabled selected>Selecciona un tipo de post</option>
+                        <option value="Pelicula">Película</option>
+                        <option value="Serie">Serie</option>
+                        <option value="Libro">Libro</option>
+                        <option value="Podcast">Podcast</option>
+                        <option value="Otro">Otro</option>
+                    </select>
                 </div>
 
                 <div class="input-group">

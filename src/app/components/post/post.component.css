@@ -33,7 +33,7 @@
     font-size: 1.5rem;
 }
 
-input, textarea {
+input, textarea, select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -44,6 +44,16 @@ input, textarea {
 
 textarea {
     resize: vertical;
+}
+
+select {
+    appearance: none; /* Quitar el estilo por defecto del navegador */
+    background-color: #f9f9f9; /* Color de fondo del select */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="gray" d="M7 10l5 5 5-5z"/></svg>'); /* Icono de flecha hacia abajo */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    cursor: pointer; /* Cambiar cursor para indicar interactividad */
 }
 
 .button-container {
@@ -59,7 +69,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    flex: 1; /* Afegeix una regla per fer que els botons ocupin l'espai disponible */
+    flex: 1; /* Hacer que los botones ocupen el espacio disponible */
 }
 
 button:hover {
