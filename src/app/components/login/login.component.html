@@ -1,9 +1,12 @@
 <div class="login-container">
   <!-- Título de la página -->
   <h1 class="title">LOGIN</h1>
-  <!-- <img class="logo" src="../../../images/logo.png"> -->
+  <!-- Imagen debajo del título -->
+  <!-- <img src="../../../../assets/images/logo.png" alt="Logo" class="login-logo"> --> 
   <!-- Formulario de inicio de sesión -->
   <form (ngSubmit)="logUser(userForm)" #userForm="ngForm">
+    <div *ngIf="errorMessage" class="error-message global-error">{{ errorMessage }}</div> <!-- Mensaje de error global -->
+
       <div class="form-group">
           <label for="username">Username:</label>
           <input

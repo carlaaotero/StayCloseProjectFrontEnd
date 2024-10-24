@@ -20,6 +20,8 @@ export class LoginComponent {
     username: '',
     password: ''
   }
+  // Propiedad para almacenar el mensaje de error
+  errorMessage: string | null = null;
 
   // Declara 'router' como propiedad de la clase
   private router: Router;
@@ -34,12 +36,24 @@ export class LoginComponent {
       username: this.loginData.username,
       password: this.loginData.password
     }
+    console.log('Loggejant user...')
     this.userService.login(this.loginData).subscribe(response => {
       console.log('Usuario loggejat correctament: ', response);
-      // Redirigeix a la pàgina d'inici si la resposta és correcta
-      this.router.navigate(['/home']); // Redirigeix a /home
+      //Recollim token del header 'auth-token'
+      const token = response.body.token;
+      //Guardem el token a sessionStorage
+      if(token){
+        sessionStorage.setItem('auth-token', token);
+        console.log('Token almacenado', token);
+        // Redirigeix a la pàgina d'inici si la resposta és correcta
+        this.router.navigate(['/home']); // Redirigeix a /home
+      }else{
+        this.errorMessage = 'no hi ha token :)'; // Asigna el mensaje de error
+        console.error('No he rebbut token '); // Gestiona errors si cal
+      }
+      
     }, error => {
-      alert('Error al loggejar, intentau de nou :)');
+      this.errorMessage = 'Error al loggejar, intentau de nou :)'; // Asigna el mensaje de error
       console.error('Error al loggejar: ', error); // Gestiona errors si cal
     });
   }

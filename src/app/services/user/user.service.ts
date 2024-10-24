@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { login, User } from '../../models/user.model';
 import { Observable } from 'rxjs';
@@ -19,39 +19,46 @@ export class UserService {
   // Obtenir tots els usuaris
   getUsers(paginator: Paginator ): Observable<{ users: User[]; total: number }> {
     console.log(paginator);
-    
-    return this.http.get<{ users: User[]; total: number }>(`${this.apiUrl}/getUsers/${paginator.page}/${paginator.limit}`);
+    const token = sessionStorage.getItem('auth-token');
+    console.log("token", token)
+    const headers = new HttpHeaders({
+      'auth-token': token ? token : ''
+    })
+    return this.http.get<{ users: User[]; total: number }>(`${this.apiUrl}/getUsers/${paginator.page}/${paginator.limit}`, {headers});
   }
 
 
   // Crear un usuari nou
   createUser(user: User): Observable<User> {
-    
-    return this.http.post<User>(this.apiUrl, user);
+    const token = sessionStorage.getItem('auth-token');
+    console.log("token", token)
+    const headers = new HttpHeaders({
+      'auth-token': token ? token : ''
+    })
+    return this.http.post<User>(this.apiUrl, user, {headers});
   }
 
   // Actualitzar un usuari pel ID
   updateUser(usuario: User): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}/update/${usuario._id}`, usuario);
+    console.log("len", sessionStorage.length)
+    const token = sessionStorage.getItem('auth-token');
+    console.log("token", token)
+    const headers = new HttpHeaders({
+      'auth-token': token ? token : ''
+    })
+    return this.http.put<User>(`${this.apiUrl}/update/${usuario._id}`, usuario, {headers});
   }
   // Eliminar un usuari pel ID
   deleteUser(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+    const token = sessionStorage.getItem('auth-token');
+    console.log("token", token)
+    const headers = new HttpHeaders({
+      'auth-token': token ? token : ''
+    })
+    return this.http.delete<any>(`${this.apiUrl}/${id}`, {headers});
   }
   login(user: login): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/login`, user);
+    return this.http.post<any>(`${this.apiUrl}/login`, user, {observe: 'response'});
   }
-
-  
-  //RUTES NO CREADES ENCARA
-  /*// Buscar un usuari pel nom d'usuari
-  findUserByUsername(username: string): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/username/${username}`); // Si tens aquesta ruta implementada
-  }
-
-  // Obtenir un usuari per ID
-  getUserById(id: string): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/${id}`);
-  }*/
 
 }

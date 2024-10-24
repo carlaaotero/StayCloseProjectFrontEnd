@@ -28,7 +28,7 @@ export class UserComponent implements OnInit{
 
   // Lista de opciones para elementos por página
   availableLimits: number[] = [5, 10, 25, 50]; // Opciones para el límite de elementos
-  totalPages: number = 0;
+
   
 
   nuevoUsuario: User = {
@@ -73,10 +73,6 @@ export class UserComponent implements OnInit{
     this.paginator.page = 1; // Reiniciar a la primera página
     this.loadUsers(); // Cargar usuarios con el nuevo límite
   }
-
- 
-
-
   // Función para agregar o modificar un usuario
   agregarElemento(userForm: NgForm): void {
     this.formSubmitted = true;
@@ -93,6 +89,7 @@ export class UserComponent implements OnInit{
   
     // Actualizar el usuario en la API
       this.userService.updateUser( this.usuarios[this.indiceEdicion]).subscribe(response => {
+        if(response)
         console.log('Usuario actualizado:', response);
       });
   
@@ -188,10 +185,8 @@ export class UserComponent implements OnInit{
   }
 
    // Calcular el número total de páginas
-   getTotalPages(): number {
-    this.totalPages = Math.ceil(this.totalUsuarios / this.paginator.limit);
-    console.log(this.totalUsuarios, this.paginator.limit);
-    return this.totalPages;
+   get totalPages(): number {
+    return Math.ceil(this.totalUsuarios / this.paginator.limit);
   }
 
   // Generar un array para iterar en el template de la paginación

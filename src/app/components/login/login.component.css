@@ -69,3 +69,20 @@ body {
 .login-button:hover {
     background-color: #77a2a2; /* Cambia de color al pasar el ratón */
 }
+
+.login-logo {
+    display: block;
+    margin: 0 auto;
+    width: 150px; /* Ajusta el tamaño según lo que necesites */
+    height: auto;
+}
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+}
+
+.global-error {
+    margin-bottom: 15px; /* Espacio entre el mensaje de error global y el formulario */
+    font-weight: bold; /* Resaltar el mensaje de error global */
+}
