@@ -1,16 +1,9 @@
-<div class="home-container">
-    <!-- Imagen del logo de Angular -->
-    <!--<img src="assets/images/angular.png" alt="Logo de Angular" class="angular-logo" />-->
-  
-    <!-- Título de la página -->
-    
-  
-    <!-- Contenedor de botones con rutas -->
-    <div class="button-container">
-      <h1 class="title">HOME</h1>
-      <!-- <img class="logo" src="../../../images/logo.png" alt="Logo de Angular"> -->
-      <!-- Añadir routerLink para navegar a las rutas correspondientes -->
-      <button class="home-button" routerLink="/user">PERFIL</button>
-      <button class="home-button" routerLink="/foro">FORO</button>
-    </div>
-  </div>
+<app-navbar></app-navbar>
+
+<div class="welcome-container">
+  <h1 class="title">WELCOME TO STAYCLOSE'S BACKOFFICE</h1>
+  <p class="subtitle">Ens alegra tenir-te aquí. Gestiona la teva configuració i mantén la teva comunitat segura.</p>
+  <img src="../../../assets/images/logo.jpg" alt="Logo" class="login-logo">
+</div>
+
+<router-outlet></router-outlet>

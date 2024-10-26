@@ -5,12 +5,13 @@ import { User } from '../../models/user.model';
 import { UserService } from '../../services/user/user.service';
 import { Paginator } from '../../models/paginator.model';
 import { Data } from '../../models/data.model';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NavbarComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })

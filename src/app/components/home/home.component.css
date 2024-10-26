@@ -1,48 +1,39 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-html, body {
-    height: 100%;
-}
-
+/* General styling */
 body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
     display: flex;
-    font-family: 'Helvetica', sans-serif;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center;     /* Centra verticalmente */
-    height: 100vh;           /* Altura completa del viewport */
-    background-color: #f4f4f4;
-}
-
-.button-container {
-    display: flex;
-    flex-direction: column;  /* Coloca los botones en columna */
-    align-items: center;      /* Centra los botones dentro del contenedor */
-    gap: 20px;                /* Espacio entre los botones */
-    padding: 20px;            /* Espacio dentro del marco */
-    border: 3px solid #89afaf;/* Marco alrededor del contenedor */
-    border-radius: 10px;      /* Bordes redondeados para un efecto más suave */
-    background-color: white;  /* Fondo blanco para destacar el marco */
-    width: 80%;              /* Ajusta el ancho al 80% del viewport */
-    max-width: 400px;         /* Limita el ancho máximo a 400px */
-    text-align: center; 
-}
-
-
-.home-button {
-    padding: 10px 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Container for welcome section */
+  .welcome-container {
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 40px;
+    margin-left: 500px;
     background-color: #89afaf;
     color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.home-button:hover {
-    background-color: #77a2a2;
-}
+    border-radius: 10px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title styling */
+  .title {
+    font-size: 2.5em;
+    margin: 20px 0 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  
+  /* Subtitle for a friendly message */
+  .subtitle {
+    font-size: 1.2em;
+    margin: 10px 0 0;
+    color: #e0f7fa;
+  }

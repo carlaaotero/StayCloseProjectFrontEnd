@@ -1,28 +1,32 @@
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  li {
-    float: left;
-  }
-  
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  /* Change the link color to #111 (black) on hover */
-  li a:hover {
-    background-color: #111;
-  }
-  
-  .active {
-    background-color: #04AA6D;
-  }
+  list-style: none; /* Elimina los puntos de lista */
+  padding: 0;
+  margin: 0;
+  height: 50px;
+  display: flex; /* Coloca los elementos en una fila */
+  background-color: #89afaf; /* Fondo del menú */
+  justify-content: space-around; /* Espacio equitativo entre elementos */
+  text-align: center;
+}
+
+li {
+  margin-right: 40px; /* Aumenta el espaciado entre elementos */
+  margin-top: 15px;
+}
+
+a {
+  text-decoration: none; /* Elimina el subrayado */
+  color: white; /* Color del texto */
+  padding: 15px 30px; /* Aumenta el espaciado dentro del enlace */
+  font-weight: bold;
+  transition: background-color 0.3s ease; /* Efecto suave en el cambio de color */
+}
+
+a:hover {
+  background-color: #6f9292; /* Color de fondo al pasar el ratón */
+  color: black;
+}
+
+a.active {
+  background-color: #5c7b7b; /* Color de fondo del enlace activo */
+}
