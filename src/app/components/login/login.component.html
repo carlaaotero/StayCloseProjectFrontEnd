@@ -16,7 +16,8 @@
   <!-- Título de la página -->
   <h1 class="title">LOGIN</h1>
   <!-- Imatge logo -->
-  <!-- <img src="_.jpeg" alt="Logo" class="login-logo">  -->
+  <img src="icons/logo.png" alt="Logo" style="height: 100px; width: 100px;" class="login-logo">
+  <br>
   <!-- Formulario de inicio de sesión -->
   <form (ngSubmit)="logUser(userForm)" #userForm="ngForm">
     <div *ngIf="errorMessage" class="error-message global-error">{{ errorMessage }}</div> <!-- Mensaje de error global -->
@@ -35,6 +36,7 @@
               El username es obligatorio.
           </div>
       </div>
+      <br>
 
       <div class="form-group">
           <label for="password">Password:</label>
