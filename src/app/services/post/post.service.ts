@@ -9,6 +9,8 @@ import { Post } from '../../models/post.model';
 })
 export class PostService {
   private apiUrl = `${environment.apiUrl}/posts`;
+  private userApiUrl = `${environment.apiUrl}/user`; // URL para los endpoints de usuario
+
   constructor(private http: HttpClient) { }
 
   // Obtener todos los posts con paginación
@@ -39,5 +41,10 @@ export class PostService {
   // Obtener todos los posts de un autor específico
   getPostsByAuthorId(authorId: string): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.apiUrl}/${authorId}/authorPosts`);
+  }
+
+  // Verificar si el nombre de usuario existe
+  checkUsername(username: string): Observable<{ exists: boolean }> {
+        return this.http.get<{ exists: boolean }>(`${this.userApiUrl}/check-username/${username}`);
   }
 }

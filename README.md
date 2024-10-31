@@ -10,5 +10,7 @@ Instal·lar Angular CLI (versió 18)
 
 > npm install -g @angular/cli@18
 
+> ng serve -o
+
 Versió 1: Inicialitzat el projecte en Angular.
 

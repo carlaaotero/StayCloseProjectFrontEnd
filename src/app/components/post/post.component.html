@@ -5,9 +5,12 @@
         <div class="form-container">
             <h2 class="title">Crear o Modificar Post</h2>
             <form #postForm="ngForm" (ngSubmit)="addPost(postForm)" class="post-form">
+                
                 <div class="input-group">
                     <label for="author">Autor:</label>
                     <input type="text" id="author" name="author" [(ngModel)]="nuevoPost.author" placeholder="Escribe el autor" required />
+                    <!-- Mensaje de error si el usuario no existe -->
+                    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
                 </div>
 
                 <div class="input-group">
