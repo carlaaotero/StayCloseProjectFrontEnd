@@ -60,5 +60,10 @@ export class UserService {
   login(user: login): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, user, {observe: 'response'});
   }
+  
+  //Buscar un usuari pel nom d'usuari
+  findUserByUsername(username: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/username/${username}`); // Si tens aquesta ruta implementada
+  }
 
 }

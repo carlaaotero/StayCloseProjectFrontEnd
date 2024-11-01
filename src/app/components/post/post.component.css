@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.foro-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    max-width: 900px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.form-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-container {
+    margin-bottom: 20px;
+}
+
+.title {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: vertical;
+}
+
+select {
+    appearance: none; /* Quitar el estilo por defecto del navegador */
+    background-color: #f9f9f9; /* Color de fondo del select */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="gray" d="M7 10l5 5 5-5z"/></svg>'); /* Icono de flecha hacia abajo */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    cursor: pointer; /* Cambiar cursor para indicar interactividad */
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    background-color: #89afaf;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 1; /* Hacer que los botones ocupen el espacio disponible */
+}
+
+button:hover {
+    background-color: #77a2a2;
+}
+
+.cancel-button {
+    background-color: #ff6b6b;
+}
+
+.cancel-button:hover {
+    background-color: #e55a5a;
+}
+
+.update-button {
+    margin-top: 20px;
+}
+
+.list-container {
+    margin-top: 20px;
+}
+
+.post-list {
+    list-style: none;
+    padding: 0;
+}
+
+.post-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.post-item h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.post-item p {
+    margin-bottom: 10px;
+}
+
+.post-item img {
+    max-width: 100%;
+    border-radius: 5px;
+}
