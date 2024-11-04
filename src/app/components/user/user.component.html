@@ -100,6 +100,13 @@
                 <div *ngIf="desplegado[i]" class="user-details">
                     <p><strong>Username:</strong> {{ usuario.username }}</p>
                     <p><strong>Email:</strong> {{ usuario.email }}</p>
+
+                    <!-- Botones para habilitar/deshabilitar usuario -->
+
+                    <button *ngIf="usuario.isEnabled && usuario._id" (click)="enableUser(usuario._id)" class="habilitar">Habilitar</button>
+                    <button *ngIf="!usuario.isEnabled && usuario._id" (click)="disableUser(usuario._id)" class="deshabilitar">Deshabilitar</button>
+
+                   
                 </div>
 
                 <button (click)="prepararEdicion(usuario, i)" class="modificar">Modificar</button>

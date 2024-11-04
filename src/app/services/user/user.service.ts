@@ -66,4 +66,40 @@ export class UserService {
     return this.http.get<User>(`${this.apiUrl}/username/${username}`); // Si tens aquesta ruta implementada
   }
 
+  enableUser (userId: string): Observable<User> {
+
+    return this.http.patch<User>(`${this.apiUrl}/${userId}/enable`, {});
+
+  }
+  disableUser (userId: string): Observable<User> {
+
+    return this.http.patch<User>(`${this.apiUrl}/${userId}/disable`, {});
+
+  }
+
+
+  //Habilitar un usuario
+  /*
+  enableUser (userId: string): Observable<any> {
+    const token = sessionStorage.getItem('auth-token');
+    const headers = new HttpHeaders({
+      'auth-token': token ? token : ''
+    });
+    return this.http.put<any>(`${this.apiUrl}/enable/${userId}`, {}, { headers });
+
+  }*/
+
+  //Deshabilitae un usuario 
+  /*
+
+  disableUser (userId: string): Observable<any> {
+    const token = sessionStorage.getItem('auth-token');
+    const headers = new HttpHeaders({
+      'auth-token': token ? token : ''
+    });
+    return this.http.put<any>(`${this.apiUrl}/disable/${userId}`, {}, { headers });
+
+  }*/
+  
+
 }

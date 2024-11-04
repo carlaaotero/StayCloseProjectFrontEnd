@@ -39,7 +39,8 @@ export class UserComponent implements OnInit{
     password: '',
     actualUbication: [],
     inHome: false,
-    admin: true
+    admin: true,
+    isEnabled:true
   };
 
   confirmarPassword: string = ''; // Campo para confirmar la contraseña
@@ -105,7 +106,8 @@ export class UserComponent implements OnInit{
         password: this.nuevoUsuario.password,
         actualUbication: this.nuevoUsuario.actualUbication,
         inHome: this.nuevoUsuario.inHome,
-        admin: this.nuevoUsuario.admin
+        admin: this.nuevoUsuario.admin,
+        isEnabled: true
       };
   
       // Enviar el usuario a la API a través del UserService
@@ -133,7 +135,8 @@ export class UserComponent implements OnInit{
       password: '',
       actualUbication: [],
       inHome: true,
-      admin: true
+      admin: true,
+      isEnabled: true
     };
     this.confirmarPassword = ''; // Reiniciar el campo de confirmar contraseña
     this.formSubmitted = false; // Restablecer el estado del formulario para no mostrar errores
@@ -200,4 +203,17 @@ export class UserComponent implements OnInit{
     }
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
+
+  enableUser(userId: string): void {
+    this.userService.enableUser(userId).subscribe(() => {
+      this.loadUsers(); // Refresca la lista de usuarios
+    });
+  }
+  
+  disableUser(userId: string): void {
+    this.userService.disableUser(userId).subscribe(() => {
+      this.loadUsers(); // Refresca la lista de usuarios
+    });
+
+}
 }
