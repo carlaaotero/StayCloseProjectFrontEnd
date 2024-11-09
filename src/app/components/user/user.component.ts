@@ -6,6 +6,7 @@ import { UserService } from '../../services/user/user.service';
 import { Paginator } from '../../models/paginator.model';
 import { Data } from '../../models/data.model';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { response } from 'express';
 
 
 @Component({
@@ -25,7 +26,9 @@ export class UserComponent implements OnInit{
     limit: 5 // Asigna el limit d'elements per pàgina
   }
   data: Data []= []; 
-
+  id: string = 'any'; //Guardar el id del user per canvi de rol
+  // Propiedad para almacenar el mensaje de error
+  errorMessage: string | null = null;
 
   // Lista de opciones para elementos por página
   availableLimits: number[] = [5, 10, 25, 50]; // Opciones para el límite de elementos
@@ -174,6 +177,20 @@ export class UserComponent implements OnInit{
     }
   }
   
+  //Canvi de rol 
+  changeRol(id: string): void {
+    this.userService.changeRol(id).subscribe(
+      response => {
+        console.log('Rol canviat', response)
+        this.loadUsers();
+      }, 
+      error => {
+        this.errorMessage = 'Ja ets administrador';
+        console.error('Error al canviar de rol', error);
+
+      }
+    )
+  }
 
   // Función para alternar la visualización del desplegable
   toggleDesplegable(index: number): void {
@@ -200,4 +217,5 @@ export class UserComponent implements OnInit{
     }
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
+
 }

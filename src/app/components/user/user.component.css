@@ -59,6 +59,12 @@ input[type="checkbox"] {
     margin-right: 10px;
 }
 
+.error-message {
+    color: blue;
+    margin-top: 10px;
+    font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+}
+
 button.submit-button {
     width: 100%;
     padding: 10px;

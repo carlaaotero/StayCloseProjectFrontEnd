@@ -66,4 +66,9 @@ export class UserService {
     return this.http.get<User>(`${this.apiUrl}/username/${username}`); // Si tens aquesta ruta implementada
   }
 
+  //Canvi de Rol 
+  changeRol(id: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/changeRol/${id}`, {observe: 'response'});
+  }
+
 }
