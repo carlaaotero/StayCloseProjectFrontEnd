@@ -6,6 +6,7 @@ import { UserService } from '../../services/user/user.service';
 import { Paginator } from '../../models/paginator.model';
 import { Data } from '../../models/data.model';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { error } from 'node:console';
 
 
 @Component({
@@ -40,7 +41,7 @@ export class UserComponent implements OnInit{
     actualUbication: [],
     inHome: false,
     admin: true,
-    isEnabled:true
+    disabled:true
   };
 
   confirmarPassword: string = ''; // Campo para confirmar la contraseña
@@ -107,7 +108,7 @@ export class UserComponent implements OnInit{
         actualUbication: this.nuevoUsuario.actualUbication,
         inHome: this.nuevoUsuario.inHome,
         admin: this.nuevoUsuario.admin,
-        isEnabled: true
+        disabled: true
       };
   
       // Enviar el usuario a la API a través del UserService
@@ -136,7 +137,7 @@ export class UserComponent implements OnInit{
       actualUbication: [],
       inHome: true,
       admin: true,
-      isEnabled: true
+      disabled: true
     };
     this.confirmarPassword = ''; // Reiniciar el campo de confirmar contraseña
     this.formSubmitted = false; // Restablecer el estado del formulario para no mostrar errores
@@ -205,14 +206,20 @@ export class UserComponent implements OnInit{
   }
 
   enableUser(userId: string): void {
-    this.userService.enableUser(userId).subscribe(() => {
-      this.loadUsers(); // Refresca la lista de usuarios
+    this.userService.enableUser(userId).subscribe({
+      next:() => {alert('Usuario habilitado');
+        this.loadUsers(); // Refresca la lista de usuarios
+      },
+      error:(err)=> console.error('Error para habilitar usuario:', err)
     });
   }
   
   disableUser(userId: string): void {
-    this.userService.disableUser(userId).subscribe(() => {
+    this.userService.disableUser(userId).subscribe({
+      next: () => { alert('Usuario deshabilitado');
       this.loadUsers(); // Refresca la lista de usuarios
+      },
+      error:(err) => console.error('Error al deshabilitar usuario:', err)
     });
 
 }

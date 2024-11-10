@@ -8,7 +8,8 @@ export interface User {
     actualUbication: [],
     inHome: boolean,
     admin: boolean,
-    isEnabled:boolean, //habilitar/deshabilitar
+    //isEnabled:boolean, //habilitar/deshabilitar
+    disabled:boolean,
 }
 
 export type login = Pick<User, 'username' | 'password' >
