@@ -86,7 +86,8 @@
         <h2>Lista de Usuarios</h2>
         <ul>
             <div *ngIf="errorMessage" class="error-message global-error">{{ errorMessage }}</div> <!-- Mensaje de error global -->
-            <li *ngFor="let usuario of usuarios; let i = index">
+            <li *ngFor="let usuario of usuarios; let i = index"
+            [ngClass]="usuario.disabled ? 'usuario-deshabilitado' : 'usuario-habilitado'">
                 <div class="user-info">
                     <strong>{{ usuario.name }}</strong>
                     <div class="button-container">
@@ -101,6 +102,15 @@
                 <div *ngIf="desplegado[i]" class="user-details">
                     <p><strong>Username:</strong> {{ usuario.username }}</p>
                     <p><strong>Email:</strong> {{ usuario.email }}</p>
+                    <p><strong>Estado:</strong> 
+                        <span *ngIf="usuario.disabled" class="text-danger">Deshabilitado &#x2716;</span>
+                        <span *ngIf="!usuario.disabled" class="text-success">Habilitado &#x2714;</span></p>
+
+                    <!-- Botones para habilitar/deshabilitar usuario -->
+
+                        <button *ngIf="usuario.disabled && usuario._id" (click)="enableUser(usuario._id!)" class="btn btn-success">Habilitar</button>
+                        <button *ngIf="!usuario.disabled && usuario._id" (click)="disableUser(usuario._id!)" class="btn btn-danger">Deshabilitar</button>
+
                 </div>
 
                 <button (click)="prepararEdicion(usuario, i)" class="modificar">Modificar</button>

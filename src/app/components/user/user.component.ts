@@ -7,6 +7,7 @@ import { Paginator } from '../../models/paginator.model';
 import { Data } from '../../models/data.model';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { response } from 'express';
+import { error } from 'node:console';
 
 
 @Component({
@@ -42,7 +43,8 @@ export class UserComponent implements OnInit{
     password: '',
     actualUbication: [],
     inHome: false,
-    admin: true
+    admin: true,
+    disabled:true
   };
 
   confirmarPassword: string = ''; // Campo para confirmar la contraseña
@@ -108,7 +110,8 @@ export class UserComponent implements OnInit{
         password: this.nuevoUsuario.password,
         actualUbication: this.nuevoUsuario.actualUbication,
         inHome: this.nuevoUsuario.inHome,
-        admin: this.nuevoUsuario.admin
+        admin: this.nuevoUsuario.admin,
+        disabled: true
       };
   
       // Enviar el usuario a la API a través del UserService
@@ -136,7 +139,8 @@ export class UserComponent implements OnInit{
       password: '',
       actualUbication: [],
       inHome: true,
-      admin: true
+      admin: true,
+      disabled: true
     };
     this.confirmarPassword = ''; // Reiniciar el campo de confirmar contraseña
     this.formSubmitted = false; // Restablecer el estado del formulario para no mostrar errores
@@ -217,5 +221,24 @@ export class UserComponent implements OnInit{
     }
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
+
+  enableUser(userId: string): void {
+    this.userService.enableUser(userId).subscribe({
+      next:() => {alert('Usuario habilitado');
+        this.loadUsers(); // Refresca la lista de usuarios
+      },
+      error:(err)=> console.error('Error para habilitar usuario:', err)
+    });
+  }
+  
+  disableUser(userId: string): void {
+    this.userService.disableUser(userId).subscribe({
+      next: () => { alert('Usuario deshabilitado');
+      this.loadUsers(); // Refresca la lista de usuarios
+      },
+      error:(err) => console.error('Error al deshabilitar usuario:', err)
+    });
+
+}
 
 }

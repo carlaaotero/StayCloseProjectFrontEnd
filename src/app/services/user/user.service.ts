@@ -71,4 +71,26 @@ export class UserService {
     return this.http.put<any>(`${this.apiUrl}/changeRol/${id}`, {observe: 'response'});
   }
 
+   //Habilitar un usuario
+  
+   enableUser (userId: string): Observable<User> {
+    const token = sessionStorage.getItem('auth-token');
+    const headers = new HttpHeaders({
+      'auth-token': token ? token : ''
+    });
+    return this.http.patch<User>(`${this.apiUrl}/enable/${userId}`, {}, { headers });
+
+  }
+
+  //Deshabilitae un usuario 
+  
+
+  disableUser (userId: string): Observable<User> {
+    const token = sessionStorage.getItem('auth-token');
+    const headers = new HttpHeaders({
+      'auth-token': token ? token : ''
+    });
+    return this.http.patch<User>(`${this.apiUrl}/disable/${userId}`, {}, { headers });
+
+  }
 }
