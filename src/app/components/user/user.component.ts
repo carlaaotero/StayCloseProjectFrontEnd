@@ -43,7 +43,7 @@ export class UserComponent implements OnInit{
     password: '',
     actualUbication: [],
     inHome: false,
-    admin: true,
+    admin: false,
     disabled:true
   };
 
@@ -139,7 +139,7 @@ export class UserComponent implements OnInit{
       password: '',
       actualUbication: [],
       inHome: true,
-      admin: true,
+      admin: false,
       disabled: true
     };
     this.confirmarPassword = ''; // Reiniciar el campo de confirmar contraseña
