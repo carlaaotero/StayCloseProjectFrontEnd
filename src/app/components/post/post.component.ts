@@ -32,11 +32,12 @@ export class PostComponent implements OnInit {
   constructor(private postService: PostService) {}
 
   ngOnInit() {
-    this.getPosts(); // Carga los posts al inicializar el componente
+    //this.getPosts(); // Carga los posts al inicializar el componente
   }
 
   // Obtener los posts existentes
   getPosts() {
+    
     this.postService.getPosts().subscribe(
       (data: Post[]) => {
         this.posts = data.filter(exp => exp._id !== undefined);

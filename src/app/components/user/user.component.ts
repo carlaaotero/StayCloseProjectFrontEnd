@@ -64,6 +64,7 @@ export class UserComponent implements OnInit{
     this.paginator.limit = limit;
 
     // Llamar al servicio para obtener los usuarios
+    
     this.userService.getUsers(this.paginator)
         .subscribe(data => {
             this.usuarios = data.users; // Suponiendo que el servicio retorna un objeto con 'users'

@@ -43,8 +43,10 @@ export class LoginComponent {
       const token = response.body.token;
       //Guardem el token a sessionStorage
       if(token){
-        sessionStorage.setItem('auth-token', token);
-        console.log('Token almacenado', token);
+        if (typeof sessionStorage !== 'undefined') {
+          sessionStorage.setItem('auth-token', token);
+         console.log('Token almacenado', token);
+        }
         // Redirigeix a la pàgina d'inici si la resposta és correcta
         this.router.navigate(['/home']); // Redirigeix a /home
       }else{

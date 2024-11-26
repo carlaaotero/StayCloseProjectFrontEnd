@@ -19,42 +19,54 @@ export class UserService {
   // Obtenir tots els usuaris
   getUsers(paginator: Paginator ): Observable<{ users: User[]; total: number }> {
     console.log(paginator);
-    const token = sessionStorage.getItem('auth-token');
-    console.log("token", token)
-    const headers = new HttpHeaders({
-      'auth-token': token ? token : ''
-    })
+    let headers;
+    if (typeof sessionStorage !== 'undefined') {
+      const token = sessionStorage.getItem('auth-token');
+      console.log("token", token)
+      headers = new HttpHeaders({
+        'auth-token': token ? token : ''
+      })
+      }
     return this.http.get<{ users: User[]; total: number }>(`${this.apiUrl}/getUsers/${paginator.page}/${paginator.limit}`, {headers});
   }
 
 
   // Crear un usuari nou
   createUser(user: User): Observable<User> {
-    const token = sessionStorage.getItem('auth-token');
-    console.log("token", token)
-    const headers = new HttpHeaders({
-      'auth-token': token ? token : ''
-    })
+    let headers;
+    if (typeof sessionStorage !== 'undefined') {
+      const token = sessionStorage.getItem('auth-token');
+      console.log("token", token)
+       headers = new HttpHeaders({
+        'auth-token': token ? token : ''
+      })
+      }
     return this.http.post<User>(this.apiUrl, user, {headers});
   }
 
   // Actualitzar un usuari pel ID
   updateUser(usuario: User): Observable<User> {
-    console.log("len", sessionStorage.length)
-    const token = sessionStorage.getItem('auth-token');
-    console.log("token", token)
-    const headers = new HttpHeaders({
-      'auth-token': token ? token : ''
-    })
+    let headers
+    if (typeof sessionStorage !== 'undefined') {
+      console.log("len", sessionStorage.length)
+      const token = sessionStorage.getItem('auth-token');
+      console.log("token", token)
+      headers = new HttpHeaders({
+        'auth-token': token ? token : ''
+      })
+        }
     return this.http.put<User>(`${this.apiUrl}/update/${usuario._id}`, usuario, {headers});
   }
   // Eliminar un usuari pel ID
   deleteUser(id: string): Observable<any> {
-    const token = sessionStorage.getItem('auth-token');
-    console.log("token", token)
-    const headers = new HttpHeaders({
-      'auth-token': token ? token : ''
-    })
+    let headers;
+    if (typeof sessionStorage !== 'undefined') {
+      const token = sessionStorage.getItem('auth-token');
+      console.log("token", token)
+      headers = new HttpHeaders({
+        'auth-token': token ? token : ''
+      })
+    }
     return this.http.delete<any>(`${this.apiUrl}/${id}`, {headers});
   }
   login(user: login): Observable<any> {
@@ -74,10 +86,14 @@ export class UserService {
    //Habilitar un usuario
   
    enableUser (userId: string): Observable<User> {
-    const token = sessionStorage.getItem('auth-token');
-    const headers = new HttpHeaders({
-      'auth-token': token ? token : ''
-    });
+    let headers;
+    if (typeof sessionStorage !== 'undefined') {
+      const token = sessionStorage.getItem('auth-token');
+      headers = new HttpHeaders({
+        'auth-token': token ? token : ''
+      });
+  
+    }
     return this.http.patch<User>(`${this.apiUrl}/enable/${userId}`, {}, { headers });
 
   }
@@ -86,10 +102,13 @@ export class UserService {
   
 
   disableUser (userId: string): Observable<User> {
-    const token = sessionStorage.getItem('auth-token');
-    const headers = new HttpHeaders({
-      'auth-token': token ? token : ''
-    });
+    let headers;
+    if (typeof sessionStorage !== 'undefined') {
+      const token = sessionStorage.getItem('auth-token');
+       headers = new HttpHeaders({
+        'auth-token': token ? token : ''
+      });
+      }
     return this.http.patch<User>(`${this.apiUrl}/disable/${userId}`, {}, { headers });
 
   }

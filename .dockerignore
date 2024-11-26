@@ -1,0 +1,24 @@
+# Node modules i altres dependències descarregades
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Fitxers generats pel compilador Angular
+dist
+out-tsc
+
+# Configuracions locals i secrets
+.env
+
+# Fitxers del sistema operatiu
+.DS_Store
+Thumbs.db
+
+# Fitxers de control de versions
+.git
+.gitignore
+
+# Altres fitxers innecessaris
+.idea
+.vscode
+.angular
